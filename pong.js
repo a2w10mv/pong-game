@@ -27,6 +27,24 @@ const ball = {
     color: '#fff'
 };
 
+const keys = {
+    ArrowUp: false,
+    ArrowDown: false
+};
+
+window.addEventListener('keydown', (e) => {
+    if (keys.hasOwnProperty(e.key)) {
+        keys[e.key] = true;
+        e.preventDefault(); // Prevent scrolling
+    }
+});
+
+window.addEventListener('keyup', (e) => {
+    if (keys.hasOwnProperty(e.key)) {
+        keys[e.key] = false;
+    }
+});
+
 // Draw functions
 function drawRect(x, y, w, h, color) {
     ctx.fillStyle = color;
@@ -106,6 +124,17 @@ function update() {
         ball.dx = direction * ball.speed * Math.cos(angleRad);
         ball.dy = ball.speed * Math.sin(angleRad);
     }
+
+    // Keyboard controls for player
+    if (keys.ArrowUp) {
+        player.y -= 7;
+    }
+    if (keys.ArrowDown) {
+        player.y += 7;
+    }
+    // Clamp player paddle (for keyboard control)
+    if (player.y < 0) player.y = 0;
+    if (player.y + player.h > canvas.height) player.y = canvas.height - player.h;
 
     // AI paddle collision
     if (
