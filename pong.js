@@ -62,12 +62,13 @@ function drawBall(x, y, size, color) {
 function drawNet() {
     ctx.strokeStyle = "#666";
     ctx.lineWidth = 4;
+    // Optimization: batch path drawing to reduce draw calls
+    ctx.beginPath();
     for (let y = 0; y < canvas.height; y += 32) {
-        ctx.beginPath();
         ctx.moveTo(canvas.width/2, y);
         ctx.lineTo(canvas.width/2, y+20);
-        ctx.stroke();
     }
+    ctx.stroke(); // Single stroke call
 }
 
 // Render everything
