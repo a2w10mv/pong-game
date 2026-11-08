@@ -16,10 +16,22 @@ h1 {
     text-shadow: 1px 2px 8px #222;
 }
 
+.instructions {
+    color: #aaa;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
 #pong {
     background: #222;
     display: block;
     border: 3px solid #0ff;
     border-radius: 12px;
     box-shadow: 0 6px 24px #000b;
+    outline: none;
+}
+
+#pong:focus-visible {
+    outline: 3px solid #f0f;
+    outline-offset: 4px;
 }
